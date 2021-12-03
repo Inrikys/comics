@@ -14,6 +14,16 @@ public class CreatorBuilder {
         return builder;
     }
 
+    public static CreatorBuilder getMockedInstance() {
+        CreatorBuilder builder = new CreatorBuilder();
+        builder.creator = new Creator();
+        builder.creator.setId(40L);
+        builder.creator.setName("Geoff Johns");
+        builder.creator.setRole("Writer");
+
+        return builder;
+    }
+
     public CreatorBuilder id(final Long id) {
         this.creator.setId(id);
         return this;

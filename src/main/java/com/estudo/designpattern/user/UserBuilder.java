@@ -2,6 +2,8 @@ package com.estudo.designpattern.user;
 
 import com.estudo.designpattern.comic.Comic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
@@ -16,6 +18,18 @@ public class UserBuilder {
     public static UserBuilder getInstance() {
         UserBuilder builder = new UserBuilder();
         builder.user = new User();
+        return builder;
+    }
+
+    public static UserBuilder getMockedInstance() throws ParseException {
+        UserBuilder builder = new UserBuilder();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        builder.user = new User();
+        builder.user.setName("Testerson da Silva");
+        builder.user.setEmail("henriquezuper@zup.com.br");
+        builder.user.setCpf("417.701.438-90");
+        builder.user.setDob(sdf.parse("1999-02-20"));
+
         return builder;
     }
 
