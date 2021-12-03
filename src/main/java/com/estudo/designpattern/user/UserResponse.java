@@ -3,7 +3,7 @@ package com.estudo.designpattern.user;
 import com.estudo.designpattern.comic.ComicResponse;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,7 @@ public class UserResponse implements Serializable {
     private String name;
     private String email;
     private String cpf;
-    private Instant dob;
+    private Date dob;
 
     private Set<ComicResponse> comics;
 
@@ -22,7 +22,7 @@ public class UserResponse implements Serializable {
 
     }
 
-    public UserResponse(Long id, String name, String email, String cpf, Instant dob, Set<ComicResponse> comics) {
+    public UserResponse(Long id, String name, String email, String cpf, Date dob, Set<ComicResponse> comics) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -75,11 +75,11 @@ public class UserResponse implements Serializable {
         this.cpf = cpf;
     }
 
-    public Instant getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(Instant dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

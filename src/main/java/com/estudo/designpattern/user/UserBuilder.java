@@ -3,6 +3,7 @@ package com.estudo.designpattern.user;
 import com.estudo.designpattern.comic.Comic;
 
 import java.time.Instant;
+import java.util.Date;
 
 // Fluent Builder
 public class UserBuilder {
@@ -38,7 +39,7 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder dob(final Instant dob) {
+    public UserBuilder dob(final Date dob) {
         this.user.setDob(dob);
         return this;
     }

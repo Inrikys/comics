@@ -29,12 +29,6 @@ public class ComicController {
 		ComicResponse obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-
-	@GetMapping(value = "/marvel/{id}")
-	public ResponseEntity<MarvelComicResponse> findByIdFromMarvelApi(@PathVariable Long id) {
-		MarvelComicResponse obj = service.findByIdFromMarvelApi(id);
-		return ResponseEntity.ok().body(obj);
-	}
 	
 	@GetMapping(value = "/register/{comicId}/{userId}")
 	public ResponseEntity<UserResponse> registerComicFromMarvelApi(@PathVariable Long comicId, @PathVariable Long userId) {

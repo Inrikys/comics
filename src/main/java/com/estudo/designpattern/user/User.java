@@ -2,6 +2,7 @@ package com.estudo.designpattern.user;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,7 +49,7 @@ public class User implements Serializable {
 
     @NotNull(message = "Data de nascimento obrigatória")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant dob;
+    private Date dob;
 
     @ManyToMany
     @JoinTable(name = "tb_user_comic", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comic_id"))
@@ -58,7 +59,7 @@ public class User implements Serializable {
 
     }
 
-    public User(Long id, String name, String email, String cpf, Instant dob) {
+    public User(Long id, String name, String email, String cpf, Date dob) {
         super();
         this.id = id;
         this.name = name;
@@ -99,11 +100,11 @@ public class User implements Serializable {
         this.cpf = cpf;
     }
 
-    public Instant getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(Instant dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

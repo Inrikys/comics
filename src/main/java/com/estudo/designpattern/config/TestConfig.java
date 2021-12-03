@@ -11,7 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.time.Instant;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @Configuration
@@ -30,13 +30,15 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
         User u1 = new User(null, "Henrique Zupper", "henriquezuper@zup.com.br", "417.701.438-90",
-                Instant.parse("1995-08-11T00:00:00Z"));
+                sdf.parse("1995-08-11"));
         User u2 = new User(null, "Usuário Zupper", "usuariozuper@zup.com.br", "208.941.580-07",
-                Instant.parse("1999-02-20T00:00:00Z"));
+                sdf.parse("1999-02-20"));
 
         User u3 = new User(null, "Marvel Zupper", "marvelzuper@zup.com.br", "556.448.560-20",
-                Instant.parse("1999-02-20T00:00:00Z"));
+                sdf.parse("1999-02-20"));
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
 
@@ -58,7 +60,7 @@ public class TestConfig implements CommandLineRunner {
         Comic co5 = new Comic(5L, "The Flash by Geoff Johns Omnibus Vol. 1", 50.00, "1401276456", "Nearly 20 years ago, writer Geoff Johns (Batman: Earth One, Shazam) took over The Flash and redefined a comic book icon for a new generation. During his unforgettable five-year run on the series, Johns would enrich the world of Keystone City and humanize both Wally West and his enemies like no one before.");
 
         creatorRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8));
-        comicRepository.saveAll(Arrays.asList(co1,co2,co3,co4,co5));
+        comicRepository.saveAll(Arrays.asList(co1, co2, co3, co4, co5));
 
         co1.getCreators().add(c1);
         co1.getCreators().add(c5);
@@ -71,7 +73,7 @@ public class TestConfig implements CommandLineRunner {
         co5.getCreators().add(c2);
         co5.getCreators().add(c8);
 
-        comicRepository.saveAll(Arrays.asList(co1,co2,co3,co4,co5));
+        comicRepository.saveAll(Arrays.asList(co1, co2, co3, co4, co5));
 
         u1.getComics().add(co1);
         u1.getComics().add(co2);
@@ -82,7 +84,7 @@ public class TestConfig implements CommandLineRunner {
         u2.getComics().add(co4);
         u2.getComics().add(co5);
 
-        userRepository.saveAll(Arrays.asList(u1,u2));
+        userRepository.saveAll(Arrays.asList(u1, u2));
     }
 
 }
