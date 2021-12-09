@@ -13,12 +13,12 @@ public enum DiscountDayEnum {
 
     private int code;
     private String label;
-    private int[] lastIsbnCaractere;
+    private int[] lastIsbnCharacter;
 
-    private DiscountDayEnum(int code, String label, int[] lastIsbnCaractere) {
+    private DiscountDayEnum(int code, String label, int[] lastIsbnCharactere) {
         this.code = code;
         this.label = label;
-        this.lastIsbnCaractere = lastIsbnCaractere;
+        this.lastIsbnCharacter = lastIsbnCharactere;
     }
 
     public int getCode() {
@@ -30,7 +30,7 @@ public enum DiscountDayEnum {
     }
 
     public int[] getIsbns() {
-        return lastIsbnCaractere;
+        return lastIsbnCharacter;
     }
 
     public static DiscountDayEnum valueOf(int code) {
