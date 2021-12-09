@@ -32,6 +32,7 @@ public class Creator implements Serializable {
     @ManyToMany(mappedBy = "creators")
     private Set<Comic> comics = new HashSet<>();
 
+    @Deprecated
     public Creator() {
 
     }

@@ -55,6 +55,7 @@ public class User implements Serializable {
     @JoinTable(name = "tb_user_comic", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comic_id"))
     private Set<Comic> comics = new HashSet<>();
 
+    @Deprecated
     public User() {
 
     }

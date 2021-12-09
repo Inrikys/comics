@@ -34,6 +34,7 @@ public class Comic implements Serializable {
     @JoinTable(name = "tb_comic_creator", joinColumns = @JoinColumn(name = "comic_id"), inverseJoinColumns = @JoinColumn(name = "creator_id"))
     private Set<Creator> creators = new HashSet<>();
 
+    @Deprecated
     public Comic() {
 
     }
@@ -102,17 +103,7 @@ public class Comic implements Serializable {
             Character lastCharacter = this.isbn.charAt(this.isbn.length() - 1);
 
             if (lastCharacter != null) {
-                if (lastCharacter == '0' || lastCharacter == '1') {
-                    return DiscountDayEnum.MONDAY.getCode();
-                } else if (lastCharacter == '2' || lastCharacter == '3') {
-                    return DiscountDayEnum.TUESDAY.getCode();
-                } else if (lastCharacter == '4' || lastCharacter == '5') {
-                    return DiscountDayEnum.WEDNESDAY.getCode();
-                } else if (lastCharacter == '6' || lastCharacter == '7') {
-                    return DiscountDayEnum.THURSDAY.getCode();
-                } else if (lastCharacter == '8' || lastCharacter == '9') {
-                    return DiscountDayEnum.FRIDAY.getCode();
-                }
+                return DiscountDayEnum.getDiscountDay(Character.getNumericValue(lastCharacter)).getCode();
             }
         }
         return null;
