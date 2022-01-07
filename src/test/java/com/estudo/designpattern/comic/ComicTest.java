@@ -2,6 +2,9 @@ package com.estudo.designpattern.comic;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,25 +29,23 @@ public class ComicTest {
         );
     }
 
-    @Test
-    public void should_return_tuesday_as_discount_day() {
-        Comic comic1 = ComicBuilder.getMockedInstance().build();
-        Comic comic2 = ComicBuilder.getMockedInstance().build();
-        comic1.setIsbn("1401276452");
-        comic2.setIsbn("1401276453");
+    @ParameterizedTest
+    @ValueSource(strings = {"1401276452", "1401276453"})
+    public void should_return_tuesday_as_discount_day(String isbn) {
+        Comic comic = ComicBuilder.getMockedInstance().build();
+        comic.setIsbn(isbn);
 
-        assertAll(
-                () -> assertTrue(comic1.getDiscountDay() == "Tuesday"),
-                () -> assertTrue(comic2.getDiscountDay() == "Tuesday")
-        );
+        assertTrue(comic.getDiscountDay() == "Tuesday");
     }
 
-    @Test
-    public void should_return_wednesday_as_discount_day() {
+    // CSV stands for Comma Separated Value
+    @ParameterizedTest(name = "isbn1={0}, isbn2={1}")
+    @CsvSource(value = {"1401276454, 1401276455"})
+    public void should_return_wednesday_as_discount_day(String isbn1, String isbn2) {
         Comic comic1 = ComicBuilder.getMockedInstance().build();
         Comic comic2 = ComicBuilder.getMockedInstance().build();
-        comic1.setIsbn("1401276454");
-        comic2.setIsbn("1401276455");
+        comic1.setIsbn(isbn1);
+        comic2.setIsbn(isbn2);
 
         assertAll(
                 () -> assertTrue(comic1.getDiscountDay() == "Wednesday"),
