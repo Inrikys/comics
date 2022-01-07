@@ -14,7 +14,7 @@ public class ComicResponse implements Serializable {
 	private String name;
 	private Double price;
 	private String isbn;
-	private Integer discountDay;
+	private String discountDay;
 	private boolean discountActive;
 	private String description;
 	
@@ -24,7 +24,7 @@ public class ComicResponse implements Serializable {
 
 	}
 
-	public ComicResponse(Long id, String name, Double price, String isbn, Integer discountDay, boolean discountActive,
+	public ComicResponse(Long id, String name, Double price, String isbn, String discountDay, boolean discountActive,
 			String description) {
 		this.id = id;
 		this.name = name;
@@ -81,11 +81,11 @@ public class ComicResponse implements Serializable {
 		this.isbn = isbn;
 	}
 
-	public Integer getDiscountDay() {
+	public String getDiscountDay() {
 		return discountDay;
 	}
 
-	public void setDiscountDay(Integer discountDay) {
+	public void setDiscountDay(String discountDay) {
 		this.discountDay = discountDay;
 	}
 

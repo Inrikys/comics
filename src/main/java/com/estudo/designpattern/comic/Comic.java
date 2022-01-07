@@ -93,18 +93,14 @@ public class Comic implements Serializable {
 
     public boolean getDiscountActive() {
         if (this.getDiscountDay() != null) {
-            return DateUtil.getCurrentDayOfWeek() == this.getDiscountDay();
+            return DateUtil.getCurrentDayOfWeek() == DiscountDayEnum.getCodeByLabel(this.getDiscountDay()).getCode();
         }
         return false;
     }
 
-    public Integer getDiscountDay() {
+    public String getDiscountDay() {
         if (!this.isbn.trim().equals("")) {
-            Character lastCharacter = this.isbn.charAt(this.isbn.length() - 1);
-
-            if (lastCharacter != null) {
-                return DiscountDayEnum.getDiscountDay(Character.getNumericValue(lastCharacter)).getCode();
-            }
+                return DiscountDayEnum.getDiscountDay(this.isbn).getLabel();
         }
         return null;
     }

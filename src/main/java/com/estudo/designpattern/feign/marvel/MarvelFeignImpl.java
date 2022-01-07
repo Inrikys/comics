@@ -15,11 +15,10 @@ public class MarvelFeignImpl implements MarvelFeign {
     @Override
     public MarvelComicResponse getComicById(Long id, String ts, String apikey, String hash) {
         try {
-            this.marvelClient.getComicById(id, ts, apikey, hash);
+            return this.marvelClient.getComicById(id, ts, apikey, hash);
         } catch (Exception e) {
-
+            throw e;
         }
-        return null;
     }
 
 }

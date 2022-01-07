@@ -20,7 +20,7 @@ public class ComicBuilder {
         return builder;
     }
 
-    public static ComicBuilder getMockedInstance() throws ParseException {
+    public static ComicBuilder getMockedInstance() {
         ComicBuilder builder = new ComicBuilder();
         builder.comic = new Comic();
         builder.comic.setId(40L);
