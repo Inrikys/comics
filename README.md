@@ -26,4 +26,4 @@ Obs: O banco inicialmente foi populado por Comics da DC com ISBN fictício para 
 - JUnit 5
 
 ## Material complementar
-Testes unitários: https://cottony-carnation-4d9.notion.site/Java-Testes-Unit-rios-59a65782066d4dc3bbe2e6573887e1fb
+Testes automatizados: https://cottony-carnation-4d9.notion.site/Java-Testes-Unit-rios-59a65782066d4dc3bbe2e6573887e1fb
