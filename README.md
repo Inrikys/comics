@@ -12,6 +12,10 @@ Obs: O banco inicialmente foi populado por Comics da DC com ISBN fictício para 
 
 ![Modelo conceitual](https://i.imgur.com/ptcP7II.png)
 
+## Estrutura
+
+![Estrutura](https://i.imgur.com/7jrwSnW.png)
+
 ## Tecnologias utilizadas
 
 - Java Spring Boot
@@ -21,6 +25,5 @@ Obs: O banco inicialmente foi populado por Comics da DC com ISBN fictício para 
 - Spring Cloud Feign
 - JUnit 5
 
-## Estrutura
-
-![Estrutura](https://i.imgur.com/7jrwSnW.png)
+## Material complementar
+Testes automatizados: https://cottony-carnation-4d9.notion.site/Java-Testes-Unit-rios-59a65782066d4dc3bbe2e6573887e1fb
