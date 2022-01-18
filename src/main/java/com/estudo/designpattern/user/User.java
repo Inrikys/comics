@@ -1,28 +1,21 @@
 package com.estudo.designpattern.user;
 
-import java.io.Serializable;
-import java.time.Instant;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import com.estudo.designpattern.annotations.Cpf;
+import com.estudo.designpattern.comic.Comic;
+import com.estudo.designpattern.exception.MethodArgumentException;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.estudo.designpattern.annotations.Cpf;
-import com.estudo.designpattern.comic.Comic;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_user")
@@ -107,6 +100,15 @@ public class User implements Serializable {
 
     public void setDob(Date dob) {
         this.dob = dob;
+    }
+
+    public void parseDob(String dob) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.dob = sdf.parse(dob);
+        } catch (ParseException e) {
+            throw new MethodArgumentException("Invalid string to parse into DOB");
+        }
     }
 
     public Set<Comic> getComics() {

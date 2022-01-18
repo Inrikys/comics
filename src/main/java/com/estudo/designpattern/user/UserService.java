@@ -3,7 +3,6 @@ package com.estudo.designpattern.user;
 import com.estudo.designpattern.exception.DatabaseException;
 import com.estudo.designpattern.exception.ResourceNotFoundException;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-    @Autowired
+
     private UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
 
     public List<UserResponse> findAll() {
         List<User> result = repository.findAll();
@@ -63,7 +66,7 @@ public class UserService {
             throw new DatabaseException(e.getMessage());
         } catch (NullPointerException e) {
             throw e;
-        }catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             throw e;
         }
     }
