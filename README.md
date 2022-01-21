@@ -24,6 +24,7 @@ Obs: O banco inicialmente foi populado por Comics da DC com ISBN fictício para 
 - H2
 - Spring Cloud Feign
 - JUnit 5
+- Mockito 3
 
 ## Material complementar
 Testes automatizados: https://cottony-carnation-4d9.notion.site/Java-Testes-Unit-rios-59a65782066d4dc3bbe2e6573887e1fb
