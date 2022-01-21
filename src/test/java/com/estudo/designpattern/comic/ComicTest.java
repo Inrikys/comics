@@ -5,9 +5,11 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.MockedStatic;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mockStatic;
 
 public class ComicTest {
 
@@ -151,6 +153,96 @@ public class ComicTest {
                     () -> assertTrue(comic1.getDiscountActive()),
                     () -> assertTrue(comic2.getDiscountActive())
             );
+        }
+    }
+
+    @Nested
+    class DiscountActiveMockedStaticReturnTests {
+        // Assumptions
+        // Set a rule to run or not the test case
+        @Test
+        public void should_return_discount_active_true_on_monday() {
+            try (MockedStatic<DateUtil> dateUtilMockedStatic = mockStatic(DateUtil.class)) {
+                Comic comic1 = ComicBuilder.getMockedInstance().build();
+                Comic comic2 = ComicBuilder.getMockedInstance().build();
+                comic1.setIsbn("1401276450");
+                comic2.setIsbn("1401276451");
+
+                dateUtilMockedStatic.when(() -> DateUtil.getCurrentDayOfWeek()).thenReturn(1);
+
+                assertAll(
+                        () -> assertTrue(comic1.getDiscountActive()),
+                        () -> assertTrue(comic2.getDiscountActive())
+                );
+            }
+        }
+
+        @Test
+        public void should_return_discount_active_true_on_tuesday() {
+            try (MockedStatic<DateUtil> dateUtilMockedStatic = mockStatic(DateUtil.class)) {
+                Comic comic1 = ComicBuilder.getMockedInstance().build();
+                Comic comic2 = ComicBuilder.getMockedInstance().build();
+                comic1.setIsbn("1401276452");
+                comic2.setIsbn("1401276453");
+
+                dateUtilMockedStatic.when(() -> DateUtil.getCurrentDayOfWeek()).thenReturn(2);
+
+                assertAll(
+                        () -> assertTrue(comic1.getDiscountActive()),
+                        () -> assertTrue(comic2.getDiscountActive())
+                );
+            }
+        }
+
+        @Test
+        public void should_return_discount_active_true_on_wednesday() {
+            try (MockedStatic<DateUtil> dateUtilMockedStatic = mockStatic(DateUtil.class)) {
+                Comic comic1 = ComicBuilder.getMockedInstance().build();
+                Comic comic2 = ComicBuilder.getMockedInstance().build();
+                comic1.setIsbn("1401276454");
+                comic2.setIsbn("1401276455");
+
+                dateUtilMockedStatic.when(() -> DateUtil.getCurrentDayOfWeek()).thenReturn(3);
+
+                assertAll(
+                        () -> assertTrue(comic1.getDiscountActive()),
+                        () -> assertTrue(comic2.getDiscountActive())
+                );
+            }
+        }
+
+        @Test
+        public void should_return_discount_active_true_on_thursday() {
+            try (MockedStatic<DateUtil> dateUtilMockedStatic = mockStatic(DateUtil.class)) {
+                Comic comic1 = ComicBuilder.getMockedInstance().build();
+                Comic comic2 = ComicBuilder.getMockedInstance().build();
+                comic1.setIsbn("1401276456");
+                comic2.setIsbn("1401276457");
+
+                dateUtilMockedStatic.when(() -> DateUtil.getCurrentDayOfWeek()).thenReturn(4);
+
+                assertAll(
+                        () -> assertTrue(comic1.getDiscountActive()),
+                        () -> assertTrue(comic2.getDiscountActive())
+                );
+            }
+        }
+
+        @Test
+        public void should_return_discount_active_true_on_friday() {
+            try (MockedStatic<DateUtil> dateUtilMockedStatic = mockStatic(DateUtil.class)) {
+                Comic comic1 = ComicBuilder.getMockedInstance().build();
+                Comic comic2 = ComicBuilder.getMockedInstance().build();
+                comic1.setIsbn("1401276458");
+                comic2.setIsbn("1401276459");
+
+                dateUtilMockedStatic.when(() -> DateUtil.getCurrentDayOfWeek()).thenReturn(5);
+
+                assertAll(
+                        () -> assertTrue(comic1.getDiscountActive()),
+                        () -> assertTrue(comic2.getDiscountActive())
+                );
+            }
         }
     }
 
