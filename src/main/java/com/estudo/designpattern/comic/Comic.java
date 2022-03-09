@@ -22,6 +22,7 @@ public class Comic implements Serializable {
     private String name;
     private Double price;
     private String isbn;
+    private String thumbnail;
 
     @Column(columnDefinition = "LONGVARCHAR")
     private String description;
@@ -89,6 +90,14 @@ public class Comic implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public boolean getDiscountActive() {

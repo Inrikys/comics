@@ -1,6 +1,7 @@
 package com.estudo.designpattern.comic;
 
 import com.estudo.designpattern.creator.Creator;
+import com.estudo.designpattern.creator.CreatorBuilder;
 import com.estudo.designpattern.creator.CreatorRepository;
 import com.estudo.designpattern.exception.DatabaseException;
 import com.estudo.designpattern.exception.ResourceNotFoundException;
@@ -59,34 +60,8 @@ public class ComicService {
         try {
             // Resgata dados da Marvel API
             MarvelComicResponse marvelComicResponse = marvelComicService.findById(comicId);
-            Comic comicObj = new Comic();
-            for (Result x : marvelComicResponse.getData().getResults()) {
-                comicObj.setId(Long.valueOf(x.getId()));
-                comicObj.setName(x.getTitle());
-                comicObj.setDescription(x.getDescription());
-                comicObj.setIsbn(x.getIsbn());
 
-                for (Price p : x.getPrices()) {
-                    comicObj.setPrice(p.getPrice());
-                }
-
-                // Dados dos autores da Comic
-                for (Item i : x.getCreators().getItems()) {
-                    Creator creator = new Creator();
-
-                    // ID do autor pela URL
-                    int index = i.getResourceURI().lastIndexOf("/");
-                    Long creatorId = Long.parseLong(i.getResourceURI().substring(index + 1));
-
-                    // Salva informações necessárias
-                    creator.setId(creatorId);
-                    creator.setName(i.getName());
-                    creator.setRole(i.getRole());
-
-                    comicObj.getCreators().add(creator);
-                }
-
-            }
+            Comic comicObj = this.formatComic(marvelComicResponse);
 
             creatorRepository.saveAll(comicObj.getCreators());
             comicRepository.save(comicObj);
@@ -105,6 +80,39 @@ public class ComicService {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    private Comic formatComic(MarvelComicResponse marvelComicResponse) {
+        Comic comicObj = ComicBuilder.getInstance().build();
+        for (Result x : marvelComicResponse.getData().getResults()) {
+            comicObj.setId(Long.valueOf(x.getId()));
+            comicObj.setName(x.getTitle());
+            comicObj.setDescription(x.getDescription());
+            comicObj.setIsbn(x.getIsbn());
+            comicObj.setThumbnail(x.getThumbnail().getPath() + "." + x.getThumbnail().getExtension());
+
+            for (Price p : x.getPrices()) {
+                comicObj.setPrice(p.getPrice());
+            }
+
+            // Dados dos autores da Comic
+            for (Item i : x.getCreators().getItems()) {
+                Creator creator = CreatorBuilder.getInstance().build();
+
+                // ID do autor pela URL
+                int index = i.getResourceURI().lastIndexOf("/");
+                Long creatorId = Long.parseLong(i.getResourceURI().substring(index + 1));
+
+                // Salva informações necessárias
+                creator.setId(creatorId);
+                creator.setName(i.getName());
+                creator.setRole(i.getRole());
+
+                comicObj.getCreators().add(creator);
+            }
+        }
+
+        return comicObj;
     }
 
 }

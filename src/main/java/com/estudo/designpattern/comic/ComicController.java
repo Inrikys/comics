@@ -1,6 +1,5 @@
 package com.estudo.designpattern.comic;
 
-import com.estudo.designpattern.feign.marvel.dto.MarvelComicResponse;
 import com.estudo.designpattern.user.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

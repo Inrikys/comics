@@ -8,104 +8,115 @@ import java.util.stream.Collectors;
 
 
 public class ComicResponse implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	private Long id;
-	private String name;
-	private Double price;
-	private String isbn;
-	private String discountDay;
-	private boolean discountActive;
-	private String description;
-	
-	private Set<CreatorResponse> creators;
-	
-	public ComicResponse() {
+    private static final long serialVersionUID = 1L;
 
-	}
+    private Long id;
+    private String name;
+    private Double price;
+    private String isbn;
+    private String discountDay;
+    private boolean discountActive;
+    private String description;
+    private String thumbnail;
 
-	public ComicResponse(Long id, String name, Double price, String isbn, String discountDay, boolean discountActive,
-			String description) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.isbn = isbn;
-		this.discountDay = discountDay;
-		this.discountActive = discountActive;
-		this.description = description;
-	}
-	
-	public ComicResponse(Comic entity) {
-		this.id = entity.getId();
-		this.name = entity.getName();
-		this.price = entity.getPrice();
-		this.isbn = entity.getIsbn();
-		this.discountDay = entity.getDiscountDay();
-		this.discountActive = entity.getDiscountActive();
-		this.description = entity.getDescription();
-		
-		if(entity.getCreators() != null) {
-			this.creators = entity.getCreators().stream().map(x -> new CreatorResponse(x)).collect(Collectors.toSet());
-		}
-	}
+    private Set<CreatorResponse> creators;
 
-	public Long getId() {
-		return id;
-	}
+    public ComicResponse() {
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    }
 
-	public String getName() {
-		return name;
-	}
+    public ComicResponse(Long id, String name, Double price, String isbn, String discountDay, boolean discountActive,
+                         String description, String thumbnail) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.isbn = isbn;
+        this.discountDay = discountDay;
+        this.discountActive = discountActive;
+        this.description = description;
+        this.thumbnail = thumbnail;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public ComicResponse(Comic entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.price = entity.getPrice();
+        this.isbn = entity.getIsbn();
+        this.discountDay = entity.getDiscountDay();
+        this.discountActive = entity.getDiscountActive();
+        this.description = entity.getDescription();
+        this.thumbnail = entity.getThumbnail();
 
-	public Double getPrice() {
-		return price;
-	}
+        if (entity.getCreators() != null) {
+            this.creators = entity.getCreators().stream().map(x -> new CreatorResponse(x)).collect(Collectors.toSet());
+        }
+    }
 
-	public void setPrice(Double price) {
-		this.price = price;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getIsbn() {
-		return isbn;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getDiscountDay() {
-		return discountDay;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDiscountDay(String discountDay) {
-		this.discountDay = discountDay;
-	}
+    public Double getPrice() {
+        return price;
+    }
 
-	public boolean isDiscountActive() {
-		return discountActive;
-	}
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-	public void setDiscountActive(boolean discountActive) {
-		this.discountActive = discountActive;
-	}
+    public String getIsbn() {
+        return isbn;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDiscountDay() {
+        return discountDay;
+    }
 
-	public Set<CreatorResponse> getCreators() {
-		return creators;
-	}
+    public void setDiscountDay(String discountDay) {
+        this.discountDay = discountDay;
+    }
+
+    public boolean isDiscountActive() {
+        return discountActive;
+    }
+
+    public void setDiscountActive(boolean discountActive) {
+        this.discountActive = discountActive;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public Set<CreatorResponse> getCreators() {
+        return creators;
+    }
 }
