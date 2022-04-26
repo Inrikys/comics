@@ -32,13 +32,15 @@ public class TestConfig implements CommandLineRunner {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+        String image = null;
+
         User u1 = new User(null, "Henrique Zupper", "henriquezuper@zup.com.br", "417.701.438-90",
-                sdf.parse("1995-08-11"));
+                sdf.parse("1995-08-11"), image);
         User u2 = new User(null, "Usuário Zupper", "usuariozuper@zup.com.br", "208.941.580-07",
-                sdf.parse("1999-02-20"));
+                sdf.parse("1999-02-20"), image);
 
         User u3 = new User(null, "Marvel Zupper", "marvelzuper@zup.com.br", "556.448.560-20",
-                sdf.parse("1999-02-20"));
+                sdf.parse("1999-02-20"), image);
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
 

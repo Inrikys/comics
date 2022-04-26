@@ -7,14 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
@@ -54,6 +48,15 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Working with form-data and files
+    @PostMapping(value = "/form-data")
+    public void createNewObjectWithFile(@RequestParam("user") String user, @RequestParam(value = "file", required = false) MultipartFile file,
+                                         @RequestParam(value = "file1", required = false) MultipartFile file1){
+        System.out.println(user);
+        System.out.println(file);
+        System.out.println(file1);
     }
 
 }

@@ -44,6 +44,8 @@ public class User implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Date dob;
 
+    private String image;
+
     @ManyToMany
     @JoinTable(name = "tb_user_comic", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comic_id"))
     private Set<Comic> comics = new HashSet<>();
@@ -53,13 +55,14 @@ public class User implements Serializable {
 
     }
 
-    public User(Long id, String name, String email, String cpf, Date dob) {
+    public User(Long id, String name, String email, String cpf, Date dob, String image) {
         super();
         this.id = id;
         this.name = name;
         this.email = email;
         this.cpf = cpf;
         this.dob = dob;
+        this.image = image;
     }
 
     public Long getId() {
