@@ -92,6 +92,13 @@ public class ResourceExceptionHandler {
 
         return ResponseEntity.status(status).body(err);
     }
+    @ExceptionHandler(RecordExistsException.class)
+    public ResponseEntity<ErrorResponse> recordExistsException(RecordExistsException e, HttpServletRequest request) {
 
+        ErrorResponse errorResponse = new ErrorResponse(e.getStatusText());
+        HttpStatus statusCode = e.getStatusCode();
+
+        return ResponseEntity.status(statusCode).body(errorResponse);
+    }
 
 }

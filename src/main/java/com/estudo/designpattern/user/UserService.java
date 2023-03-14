@@ -24,7 +24,7 @@ public class UserService {
 
     public List<UserResponse> findAll() {
         List<User> result = repository.findAll();
-        return result.stream().map(x -> new UserResponse(x)).collect(Collectors.toList());
+        return result.stream().map(UserResponse::new).collect(Collectors.toList());
     }
 
     public UserResponse findById(Long id) {
@@ -39,19 +39,6 @@ public class UserService {
 
     }
 
-    public UserResponse insert(User obj) {
-        try {
-            User userResult = repository.save(obj);
-            UserResponse result = new UserResponse(userResult);
-            return result;
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        } catch (ConstraintViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        } catch (NullPointerException e) {
-            throw e;
-        }
-    }
 
     public UserResponse update(Long id, User obj) {
         try {

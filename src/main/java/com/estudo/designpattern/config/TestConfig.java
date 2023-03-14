@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 @Configuration
@@ -35,12 +36,12 @@ public class TestConfig implements CommandLineRunner {
         String image = null;
 
         User u1 = new User(null, "Henrique Zupper", "henriquezuper@zup.com.br", "417.701.438-90",
-                sdf.parse("1995-08-11"), image);
+                LocalDate.of(1995, 10, 13), image);
         User u2 = new User(null, "Usuário Zupper", "usuariozuper@zup.com.br", "208.941.580-07",
-                sdf.parse("1999-02-20"), image);
+                LocalDate.of(1999, 5, 10), image);
 
         User u3 = new User(null, "Marvel Zupper", "marvelzuper@zup.com.br", "556.448.560-20",
-                sdf.parse("1999-02-20"), image);
+                LocalDate.of(1997, 7, 25), image);
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
 

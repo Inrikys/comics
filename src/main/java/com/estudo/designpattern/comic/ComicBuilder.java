@@ -1,10 +1,5 @@
 package com.estudo.designpattern.comic;
 
-import com.estudo.designpattern.creator.CreatorBuilder;
-import com.estudo.designpattern.user.UserBuilder;
-
-import java.text.ParseException;
-
 // Fluent Builder
 public class ComicBuilder {
 

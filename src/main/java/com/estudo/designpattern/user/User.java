@@ -1,18 +1,10 @@
 package com.estudo.designpattern.user;
 
-import com.estudo.designpattern.annotations.Cpf;
 import com.estudo.designpattern.comic.Comic;
-import com.estudo.designpattern.exception.MethodArgumentException;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,23 +18,15 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nome obrigatório")
     private String name;
 
-    @NotBlank(message = "E-mail obrigatório")
-    @Email(message = "E-mail inválido")
     @Column(unique = true)
     private String email;
 
     @Column(unique = true)
-    @Size(min = 14, max = 14)
-    @Cpf(message = "CPF inválido")
-    @NotNull(message = "CPF obrigatório")
     private String cpf;
 
-    @NotNull(message = "Data de nascimento obrigatória")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Date dob;
+    private LocalDate dob;
 
     private String image;
 
@@ -51,11 +35,13 @@ public class User implements Serializable {
     private Set<Comic> comics = new HashSet<>();
 
     @Deprecated
+    /**
+     * @deprecated framework eyes only
+     */
     public User() {
-
     }
 
-    public User(Long id, String name, String email, String cpf, Date dob, String image) {
+    public User(Long id, String name, String email, String cpf, LocalDate dob, String image) {
         super();
         this.id = id;
         this.name = name;
@@ -69,77 +55,92 @@ public class User implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public void parseDob(String dob) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            this.dob = sdf.parse(dob);
-        } catch (ParseException e) {
-            throw new MethodArgumentException("Invalid string to parse into DOB");
-        }
     }
 
     public Set<Comic> getComics() {
         return comics;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
+    public User setName(String name) {
+        this.name = name;
+        return this;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+    public User setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public User setDob(LocalDate dob) {
+        this.dob = dob;
+        return this;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private Long id;
+        private String name;
+        private String email;
+        private String cpf;
+        private LocalDate dob;
+        private String image;
+        private Set<Comic> comics = new HashSet<>();
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder cpf(String cpf) {
+            this.cpf = cpf;
+            return this;
+        }
+
+        public Builder dob(LocalDate dob) {
+            this.dob = dob;
+            return this;
+        }
+
+        public Builder image(String image) {
+            this.image = image;
+            return this;
+        }
+
+        public Builder comics(Set<Comic> comics) {
+            this.comics = comics;
+            return this;
+        }
+
+        public User build() {
+            return new User(id, name, email, cpf, dob, image);
+        }
     }
 }

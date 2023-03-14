@@ -3,6 +3,7 @@ package com.estudo.designpattern.user;
 import com.estudo.designpattern.comic.ComicResponse;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,15 +15,11 @@ public class UserResponse implements Serializable {
     private String name;
     private String email;
     private String cpf;
-    private Date dob;
+    private LocalDate dob;
 
     private Set<ComicResponse> comics;
 
-    public UserResponse() {
-
-    }
-
-    public UserResponse(Long id, String name, String email, String cpf, Date dob, Set<ComicResponse> comics) {
+    public UserResponse(Long id, String name, String email, String cpf, LocalDate dob, Set<ComicResponse> comics) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -39,7 +36,7 @@ public class UserResponse implements Serializable {
         this.dob = entity.getDob();
 
         if (entity.getComics() != null) {
-            this.comics = entity.getComics().stream().map(x -> new ComicResponse(x)).collect(Collectors.toSet());
+            this.comics = entity.getComics().stream().map(ComicResponse::new).collect(Collectors.toSet());
         }
     }
 
@@ -47,40 +44,20 @@ public class UserResponse implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
     }
 
     public Set<ComicResponse> getComics() {
