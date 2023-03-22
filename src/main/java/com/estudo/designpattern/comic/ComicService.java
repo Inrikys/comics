@@ -1,14 +1,13 @@
 package com.estudo.designpattern.comic;
 
 import com.estudo.designpattern.creator.Creator;
-import com.estudo.designpattern.creator.CreatorBuilder;
 import com.estudo.designpattern.creator.CreatorRepository;
 import com.estudo.designpattern.exception.DatabaseException;
 import com.estudo.designpattern.exception.ResourceNotFoundException;
-import com.estudo.designpattern.feign.marvel.dto.Item;
-import com.estudo.designpattern.feign.marvel.dto.MarvelComicResponse;
-import com.estudo.designpattern.feign.marvel.dto.Price;
-import com.estudo.designpattern.feign.marvel.dto.Result;
+import com.estudo.designpattern.client.marvel.dto.Item;
+import com.estudo.designpattern.client.marvel.dto.MarvelComicResponse;
+import com.estudo.designpattern.client.marvel.dto.Price;
+import com.estudo.designpattern.client.marvel.dto.Result;
 import com.estudo.designpattern.marvel.comic.MarvelComicService;
 import com.estudo.designpattern.user.User;
 import com.estudo.designpattern.user.UserRepository;
@@ -84,29 +83,30 @@ public class ComicService {
 
     private Comic formatComic(MarvelComicResponse marvelComicResponse) {
         Comic comicObj = ComicBuilder.getInstance().build();
-        for (Result x : marvelComicResponse.getData().getResults()) {
-            comicObj.setId(Long.valueOf(x.getId()));
-            comicObj.setName(x.getTitle());
-            comicObj.setDescription(x.getDescription());
-            comicObj.setIsbn(x.getIsbn());
-            comicObj.setThumbnail(x.getThumbnail().getPath() + "." + x.getThumbnail().getExtension());
+        for (Result comic : marvelComicResponse.getData().getResults()) {
+            comicObj.setId(Long.valueOf(comic.getId()));
+            comicObj.setName(comic.getTitle());
+            comicObj.setDescription(comic.getDescription());
+            comicObj.setIsbn(comic.getIsbn());
+            comicObj.setThumbnail(comic.getThumbnail().getPath() + "." + comic.getThumbnail().getExtension());
 
-            for (Price p : x.getPrices()) {
+            for (Price p : comic.getPrices()) {
                 comicObj.setPrice(p.getPrice());
             }
 
             // Dados dos autores da Comic
-            for (Item i : x.getCreators().getItems()) {
-                Creator creator = CreatorBuilder.getInstance().build();
+            for (Item i : comic.getCreators().getItems()) {
 
                 // ID do autor pela URL
                 int index = i.getResourceURI().lastIndexOf("/");
                 Long creatorId = Long.parseLong(i.getResourceURI().substring(index + 1));
 
                 // Salva informações necessárias
-                creator.setId(creatorId);
-                creator.setName(i.getName());
-                creator.setRole(i.getRole());
+                Creator creator = Creator.builder()
+                        .id(creatorId)
+                        .name(i.getName())
+                        .role(i.getRole())
+                        .build();
 
                 comicObj.getCreators().add(creator);
             }

@@ -1,5 +1,5 @@
 
-package com.estudo.designpattern.feign.marvel.dto;
+package com.estudo.designpattern.client.marvel.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,37 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "type",
-    "price"
+    "path",
+    "extension"
 })
 @Generated("jsonschema2pojo")
-public class Price {
+public class Image {
 
-    @JsonProperty("type")
-    private String type;
-    @JsonProperty("price")
-    private Double price;
+    @JsonProperty("path")
+    private String path;
+    @JsonProperty("extension")
+    private String extension;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("type")
-    public String getType() {
-        return type;
+    @JsonProperty("path")
+    public String getPath() {
+        return path;
     }
 
-    @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
+    @JsonProperty("path")
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    @JsonProperty("price")
-    public Double getPrice() {
-        return price;
+    @JsonProperty("extension")
+    public String getExtension() {
+        return extension;
     }
 
-    @JsonProperty("price")
-    public void setPrice(Double price) {
-        this.price = price;
+    @JsonProperty("extension")
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
     @JsonAnyGetter

@@ -1,7 +1,7 @@
 package com.estudo.designpattern.marvel.comic;
 
-import com.estudo.designpattern.feign.marvel.MarvelClient;
-import com.estudo.designpattern.feign.marvel.dto.MarvelComicResponse;
+import com.estudo.designpattern.client.marvel.MarvelClient;
+import com.estudo.designpattern.client.marvel.dto.MarvelComicResponse;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

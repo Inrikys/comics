@@ -9,21 +9,21 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UserRequest implements Serializable {
+public class CreateUserRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotBlank(message = "Nome obrigatório")
+    @NotBlank(message = "Name is required")
     private String name;
 
-    @NotBlank(message = "E-mail obrigatório")
+    @NotBlank(message = "E-mail is required")
     @Email(message = "E-mail inválido")
     private String email;
 
-    @CPF(message = "CPF inválido")
-    @NotNull(message = "CPF obrigatório")
+    @CPF(message = "CPF is required")
+    @NotNull(message = "CPF is required")
     private String cpf;
 
-    @NotNull(message = "Data de nascimento obrigatória")
+    @NotNull(message = "Date of birth is required")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
 
@@ -33,10 +33,10 @@ public class UserRequest implements Serializable {
     /**
      * @deprecated framework eyes only
      */
-    public UserRequest() {
+    public CreateUserRequest() {
     }
 
-    public UserRequest(String name, String email, String cpf, LocalDate dob, String image) {
+    public CreateUserRequest(String name, String email, String cpf, LocalDate dob, String image) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;

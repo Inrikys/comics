@@ -1,5 +1,5 @@
 
-package com.estudo.designpattern.feign.marvel.dto;
+package com.estudo.designpattern.client.marvel.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,15 +14,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "type",
-    "date"
+    "url"
 })
 @Generated("jsonschema2pojo")
-public class Date {
+public class Url {
 
     @JsonProperty("type")
     private String type;
-    @JsonProperty("date")
-    private String date;
+    @JsonProperty("url")
+    private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -36,14 +36,14 @@ public class Date {
         this.type = type;
     }
 
-    @JsonProperty("date")
-    public String getDate() {
-        return date;
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    @JsonProperty("date")
-    public void setDate(String date) {
-        this.date = date;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @JsonAnyGetter

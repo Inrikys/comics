@@ -1,5 +1,5 @@
 
-package com.estudo.designpattern.feign.marvel.dto;
+package com.estudo.designpattern.client.marvel.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,50 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "resourceURI",
-    "name",
-    "role"
+    "type",
+    "date"
 })
 @Generated("jsonschema2pojo")
-public class Item {
+public class Date {
 
-    @JsonProperty("resourceURI")
-    private String resourceURI;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("role")
-    private String role;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("date")
+    private String date;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("resourceURI")
-    public String getResourceURI() {
-        return resourceURI;
+    @JsonProperty("type")
+    public String getType() {
+        return type;
     }
 
-    @JsonProperty("resourceURI")
-    public void setResourceURI(String resourceURI) {
-        this.resourceURI = resourceURI;
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("date")
+    public String getDate() {
+        return date;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @JsonProperty("role")
-    public String getRole() {
-        return role;
-    }
-
-    @JsonProperty("role")
-    public void setRole(String role) {
-        this.role = role;
+    @JsonProperty("date")
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @JsonAnyGetter

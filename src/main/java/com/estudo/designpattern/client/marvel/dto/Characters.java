@@ -1,5 +1,5 @@
 
-package com.estudo.designpattern.feign.marvel.dto;
+package com.estudo.designpattern.client.marvel.dto;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,14 +20,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "returned"
 })
 @Generated("jsonschema2pojo")
-public class Creators {
+public class Characters {
 
     @JsonProperty("available")
     private Integer available;
     @JsonProperty("collectionURI")
     private String collectionURI;
     @JsonProperty("items")
-    private List<Item> items = null;
+    private List<Item__1> items = null;
     @JsonProperty("returned")
     private Integer returned;
     @JsonIgnore
@@ -54,12 +54,12 @@ public class Creators {
     }
 
     @JsonProperty("items")
-    public List<Item> getItems() {
+    public List<Item__1> getItems() {
         return items;
     }
 
     @JsonProperty("items")
-    public void setItems(List<Item> items) {
+    public void setItems(List<Item__1> items) {
         this.items = items;
     }
 

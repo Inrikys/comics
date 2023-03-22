@@ -36,6 +36,9 @@ public class Comic implements Serializable {
     private Set<Creator> creators = new HashSet<>();
 
     @Deprecated
+    /**
+     * @deprecated Framework eyes only
+     */
     public Comic() {
 
     }

@@ -94,6 +94,12 @@ public class User implements Serializable {
         return new Builder();
     }
 
+    public void updateData(UpdateUserData request) {
+        this.name = request.getName().orElse(this.name);
+        this.email = request.getEmail().orElse(this.email);
+        this.image = request.getImage().orElse(this.image);
+    }
+
     public static class Builder {
 
         private Long id;

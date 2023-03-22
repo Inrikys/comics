@@ -9,8 +9,11 @@ public class CreatorResponse implements Serializable {
 	private String name;
 	private String role;
 
+	@Deprecated
+	/**
+	 * @deprecated Framework eyes only
+	 */
 	public CreatorResponse() {
-
 	}
 
 	public CreatorResponse(Long id, String name, String role) {

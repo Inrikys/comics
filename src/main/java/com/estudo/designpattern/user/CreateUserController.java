@@ -23,7 +23,7 @@ public class CreateUserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> insert(@Valid @RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> insert(@Valid @RequestBody CreateUserRequest request) {
 
         if (repository.existsByEmail(request.getEmail())) {
             throw new RecordExistsException(HttpStatus.UNPROCESSABLE_ENTITY, "E-mail already exists in the database");

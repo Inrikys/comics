@@ -1,6 +1,6 @@
-package com.estudo.designpattern.feign.marvel;
+package com.estudo.designpattern.client.marvel;
 
-import com.estudo.designpattern.feign.marvel.dto.MarvelComicResponse;
+import com.estudo.designpattern.client.marvel.dto.MarvelComicResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

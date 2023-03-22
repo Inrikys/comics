@@ -1,5 +1,5 @@
 
-package com.estudo.designpattern.feign.marvel.dto;
+package com.estudo.designpattern.client.marvel.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "name"
 })
 @Generated("jsonschema2pojo")
-public class Variant {
+public class Item__1 {
 
     @JsonProperty("resourceURI")
     private String resourceURI;

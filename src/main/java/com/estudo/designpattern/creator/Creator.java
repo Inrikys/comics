@@ -33,8 +33,10 @@ public class Creator implements Serializable {
     private Set<Comic> comics = new HashSet<>();
 
     @Deprecated
+    /**
+     * @deprecated Framework eyes only
+     */
     public Creator() {
-
     }
 
     public Creator(Long id, String name, String role) {
@@ -72,28 +74,42 @@ public class Creator implements Serializable {
         return comics;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Creator other = (Creator) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+    public static class Builder() {
+
+        private Long id;
+
+        private String name;
+
+        private String role;
+
+        private Set<Comic> comics = new HashSet<>();
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder role(String role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder comics(Set<Comic> comics) {
+            this.comics = comics;
+            return this;
+        }
+
+        public Creator build() {
+            return new Creator(id, name, role);
+        }
     }
 }

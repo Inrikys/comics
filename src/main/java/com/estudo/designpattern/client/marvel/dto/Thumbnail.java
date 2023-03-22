@@ -1,5 +1,5 @@
 
-package com.estudo.designpattern.feign.marvel.dto;
+package com.estudo.designpattern.client.marvel.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,37 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "resourceURI",
-    "name"
+    "path",
+    "extension"
 })
 @Generated("jsonschema2pojo")
-public class Item__1 {
+public class Thumbnail {
 
-    @JsonProperty("resourceURI")
-    private String resourceURI;
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("path")
+    private String path;
+    @JsonProperty("extension")
+    private String extension;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("resourceURI")
-    public String getResourceURI() {
-        return resourceURI;
+    @JsonProperty("path")
+    public String getPath() {
+        return path;
     }
 
-    @JsonProperty("resourceURI")
-    public void setResourceURI(String resourceURI) {
-        this.resourceURI = resourceURI;
+    @JsonProperty("path")
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("extension")
+    public String getExtension() {
+        return extension;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("extension")
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
     @JsonAnyGetter
